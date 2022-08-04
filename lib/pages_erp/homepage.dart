@@ -25,50 +25,85 @@ class _HomePageState extends State<HomePage> {
     print(box.read('token'));
     // logoutBloc.sinkData;
 
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromRGBO(35, 133, 59, 1),
-          title: Center(child: Text("Home Screen")),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                        Color.fromRGBO(35, 133, 59, 1))),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      child: const ChangePass(),
-                    ),
-                  );
-                },
-                child: Text("Change Password")),
-            StreamBuilder(
-                stream: logoutBloc.streamData(),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  // token=box.read('token');
-                  success = snapshot.hasData.toString();
-                  print(success);
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(35, 133, 59, 1),
+        title: Center(child: Text("Home Screen")),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      Color.fromRGBO(35, 133, 59, 1))),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: const ChangePass(),
+                  ),
+                );
+              },
+              child: Text("Change Password")),
+          StreamBuilder(
+              stream: logoutBloc.streamData(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                // token=box.read('token');
+                success = snapshot.hasData.toString();
+                print(success);
 
-                  return Center(
-                      child: ElevatedButton(
-                          onPressed: () => {
-                                (logoutBloc.sinkData(token)),
-                                Navigator.pop(context, MyRoutes.LoginPageRoute)
-                              },
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  Color.fromRGBO(35, 133, 59, 1))),
-                          child: const Text("LogOut")));
-                }),
-          ],
-        ),
+                return Center(
+                    child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          Color.fromRGBO(35, 133, 59, 1))),
+                  child: const Text("LogOut"),
+
+                  onPressed: () {
+                    (logoutBloc.sinkData(token));
+                    final snackBar = SnackBar(
+                      content: const Text('LOGOUT'),
+                      action: SnackBarAction(
+                        label: 'Yes',
+                        onPressed: () {
+                          Navigator.pop(context, MyRoutes.LoginPageRoute);
+                        },
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
+
+                  // onPressed: () => {
+                  //       (logoutBloc.sinkData(token)),
+                  //       Navigator.pop(context, MyRoutes.LoginPageRoute),
+                  //     },
+                  // style: ButtonStyle(
+                  //     backgroundColor: MaterialStateProperty.all(
+                  //         Color.fromRGBO(35, 133, 59, 1))),
+                  // child: const Text("LogOut")
+                ));
+              }),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     final snackBar = SnackBar(
+          //       content: const Text('Yay! A SnackBar!'),
+          //       action: SnackBarAction(
+          //         label: 'Undo',
+          //         onPressed: () {
+          //           // Some code to undo the change.
+          //         },
+          //       ),
+          //     );
+
+          //     // Find the ScaffoldMessenger in the widget tree
+          //     // and use it to show a SnackBar.
+          //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          //   },
+          //   child: const Text('Show SnackBar'),
+          // ),
+        ],
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:erp_app/pages_erp/change_password.dart';
 import 'package:erp_app/pages_erp/forgot_pass.dart';
 import 'package:erp_app/pages_erp/homepage.dart';
 import 'package:erp_app/pages_erp/otp_page.dart';
@@ -21,6 +20,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String? username = '';
   String? password = '';
+  String? clientcode = '';
   String? otp = '';
   String? resultMessage = '';
   String? isOTP = "";
@@ -77,10 +77,47 @@ class _LoginPageState extends State<LoginPage> {
                           width: 88, height: 6))
                 ],
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 17),
+                child: Container(
+                  height: 50,
+                  width: 310,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(16)),
+                  child: StreamBuilder(
+                      stream: checkUserBloc.streamData(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<CheckUserModel> snapshot) {
+                        return TextField(
+                          onChanged: (value) {
+                            clientcode = value;
+                          },
+                          // onSubmitted: (value) {
+                          //   checkUserBloc.sinkData(username, clientcode);
+                          //  otpStatus = snapshot.data!.value!.otp.toString();
+                          //  print(isOTP);
+                          // },
+                          obscureText: false,
+                          decoration: const InputDecoration(
+                            isDense: true,
+                            hintText: 'ClientCode',
+                            border: InputBorder.none,
+                            prefixIcon: Icon(
+                              Icons.qr_code_2,
+                              color: Colors.grey,
+                              size: 25,
+                            ),
+                            contentPadding: EdgeInsets.fromLTRB(20, 10, 0, 5),
+                          ),
+                        );
+                      }),
+                ),
+              ),
               Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 32, left: 28, right: 5),
+                    padding: EdgeInsets.only(top: 10, left: 28, right: 5),
                     child: Container(
                       height: 50,
                       width: 307,
@@ -133,8 +170,8 @@ class _LoginPageState extends State<LoginPage> {
                                                 username = value;
                                               },
                                               onSubmitted: (value) {
-                                                checkUserBloc
-                                                    .sinkData(username);
+                                                checkUserBloc.sinkData(
+                                                    username, clientcode);
                                                 //  otpStatus = snapshot.data!.value!.otp.toString();
                                                 //  print(isOTP);
                                               },
@@ -217,7 +254,9 @@ class _LoginPageState extends State<LoginPage> {
                                                   },
                                                   onSubmitted: (value) {
                                                     userAuthBloc.sinkData(
-                                                        username, password);
+                                                        username,
+                                                        password,
+                                                        clientcode);
                                                   },
                                                   obscureText: false,
                                                   obscuringCharacter: "*",
@@ -333,6 +372,7 @@ class _LoginPageState extends State<LoginPage> {
                                         ),
                                       );
                                     }
+                                    ;
                                     SnackBar(content: Text("Not Authorized"));
                                   },
                                   child: Text("Login",

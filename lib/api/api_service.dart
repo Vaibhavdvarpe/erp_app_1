@@ -13,17 +13,37 @@ import '../config/constant.dart';
 
 class ApiService {
   final box = GetStorage();
-  checkUser(username) async {
+  checkUser(username, clientcode) async {
     String uri = "${Constants.host}${Constants.getUserVerification}";
 
     final response = await http.post(Uri.parse(uri), body: {
       "username": username,
       //  "password":password.toString(),
-      "clientcode": 'KDilip',
+      "clientcode": clientcode,
     });
     if (response.statusCode == 200) {
       debugPrint(response.statusCode.toString());
       return CheckUserModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception("Error");
+    }
+  }
+
+  authenticateUser(username, password, clientcode) async {
+    String uri = "${Constants.host}${Constants.authenticateuser}";
+
+    final response = await http.post(Uri.parse(uri), body: {
+      "username": username,
+      "clientcode": clientcode,
+      "password": password,
+      'IFCM': '',
+      'AFCM': '',
+      'IDeviceType': '',
+      'ADeviceType': 'Android'
+    });
+    if (response.statusCode == 200) {
+      debugPrint(response.statusCode.toString());
+      return userAuthModelFromJson(response.body);
     } else {
       throw Exception("Error");
     }
@@ -53,26 +73,6 @@ class ApiService {
       return changePassModelFromJson(response.body);
     } else {
       return Exception("Error");
-    }
-  }
-
-  authenticateUser(username, password) async {
-    String uri = "${Constants.host}${Constants.authenticateuser}";
-
-    final response = await http.post(Uri.parse(uri), body: {
-      "username": username,
-      "clientcode": 'KDilip',
-      "password": password,
-      'IFCM': '',
-      'AFCM': '',
-      'IDeviceType': '',
-      'ADeviceType': 'Android'
-    });
-    if (response.statusCode == 200) {
-      debugPrint(response.statusCode.toString());
-      return userAuthModelFromJson(response.body);
-    } else {
-      throw Exception("Error");
     }
   }
 

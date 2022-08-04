@@ -13,8 +13,9 @@ class UserAuthBloc extends Cubit<dynamic> {
     return _publishSubject.stream;
   }
 
-  sinkData(username, password) async {
-    UserAuthModel data = await _repo.authenticateUser(username, password);
+  sinkData(username, password, clientcode) async {
+    UserAuthModel data =
+        await _repo.authenticateUser(username, password, clientcode);
     _publishSubject.sink.add(data);
   }
 

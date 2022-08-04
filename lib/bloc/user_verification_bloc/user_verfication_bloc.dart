@@ -13,9 +13,8 @@ class CheckUserBloc extends Cubit<dynamic> {
     return _publishSubject.stream;
   }
 
-
-  sinkData(username) async {
-    CheckUserModel data = await _repo.repoCheckUser(username);
+  sinkData(username, clientcode) async {
+    CheckUserModel data = await _repo.repoCheckUser(username, clientcode);
     _publishSubject.sink.add(data);
   }
 

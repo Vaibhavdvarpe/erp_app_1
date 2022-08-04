@@ -27,30 +27,37 @@ class _ChangePassState extends State<ChangePass> {
   @override
   Widget build(BuildContext context) {
     // changePassBloc.sinkData(token, currentpass, newpass);
-    return MaterialApp(
-        theme: ThemeData(
-            textTheme:
-                GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
-        debugShowCheckedModeBanner: false,
-        home: Container(
-            color: Colors.white,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: Scaffold(
-                body: SingleChildScrollView(
-                    child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 22, left: 10, right: 264),
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      "assets/svg/backbutton_svg.svg",
-                      height: 42,
-                      width: 85,
-                    ),
-                  ],
-                ),
-              ),
+    return
+        //  MaterialApp(
+        //     theme: ThemeData(
+        //         textTheme:
+        //             GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
+        //     debugShowCheckedModeBanner: false,
+        //     home: Container(
+        //         color: Colors.white,
+        //         width: MediaQuery.of(context).size.width,
+        //         height: MediaQuery.of(context).size.height,
+        //         child:
+        Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+            ),
+            body: SingleChildScrollView(
+                child: Column(children: [
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.only(top: 22, left: 10, right: 264),
+              //   child: Row(
+              //     children: [
+              //       SvgPicture.asset(
+              //         "assets/svg/backbutton_svg.svg",
+              //         height: 42,
+              //         width: 85,
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -424,6 +431,6 @@ class _ChangePassState extends State<ChangePass> {
                       ),
                     );
                   }),
-            ])))));
+            ])));
   }
 }
