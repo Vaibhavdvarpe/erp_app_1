@@ -18,6 +18,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final fieldText1 = TextEditingController();
+  final fieldText2 = TextEditingController();
+  final fieldText3 = TextEditingController();
+
+  void clearText() {
+    fieldText1.clear();
+    fieldText2.clear();
+    fieldText3.clear();
+  }
+
   String? username = '';
   String? password = '';
   String? clientcode = '';
@@ -116,6 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                                         child: Padding(
                                           padding: EdgeInsets.only(bottom: 1),
                                           child: TextField(
+                                            controller: fieldText1,
                                             onChanged: (value) {
                                               clientcode = value;
                                             },
@@ -192,6 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                                           child: Padding(
                                             padding: EdgeInsets.only(bottom: 1),
                                             child: TextField(
+                                              controller: fieldText2,
                                               onChanged: (value) {
                                                 username = value;
                                               },
@@ -274,6 +286,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 padding:
                                                     EdgeInsets.only(bottom: 1),
                                                 child: TextField(
+                                                  controller: fieldText3,
                                                   onChanged: (value) {
                                                     password = value;
                                                     // checkUserBloc.sinkData(username,password);
@@ -386,6 +399,9 @@ class _LoginPageState extends State<LoginPage> {
                                 width: 306,
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    setState(() {
+                                      clearText();
+                                    });
                                     print(resultMessage);
 
                                     if (resultMessage.toString() ==
