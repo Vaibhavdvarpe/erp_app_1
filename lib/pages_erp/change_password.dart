@@ -2,10 +2,7 @@ import 'package:erp_app/bloc/change_pass_bloc/change_pass_bloc.dart';
 import 'package:erp_app/pages_erp/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
-
-import '../bloc/user_auth_bloc/authmodel.dart';
 
 class ChangePass extends StatefulWidget {
   const ChangePass({Key? key}) : super(key: key);
@@ -40,24 +37,18 @@ class _ChangePassState extends State<ChangePass> {
         //         child:
         Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              leading: IconButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: Icon(
+                    Icons.keyboard_arrow_left_sharp,
+                    size: 35,
+                  )),
+              iconTheme: IconThemeData(color: Color.fromRGBO(35, 133, 59, 1)),
+              backgroundColor: Color.fromARGB(255, 253, 249, 249),
               elevation: 0,
             ),
             body: SingleChildScrollView(
                 child: Column(children: [
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.only(top: 22, left: 10, right: 264),
-              //   child: Row(
-              //     children: [
-              //       SvgPicture.asset(
-              //         "assets/svg/backbutton_svg.svg",
-              //         height: 42,
-              //         width: 85,
-              //       ),
-              //     ],
-              //   ),
-              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

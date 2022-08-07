@@ -60,11 +60,10 @@ class _HomePageState extends State<HomePage> {
                       backgroundColor: MaterialStateProperty.all(
                           Color.fromRGBO(35, 133, 59, 1))),
                   child: const Text("LogOut"),
-
                   onPressed: () {
                     (logoutBloc.sinkData(token));
                     final snackBar = SnackBar(
-                      content: const Text('LOGOUT'),
+                      content: const Text('Logout...?'),
                       action: SnackBarAction(
                         label: 'Yes',
                         onPressed: () {
@@ -74,35 +73,8 @@ class _HomePageState extends State<HomePage> {
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   },
-
-                  // onPressed: () => {
-                  //       (logoutBloc.sinkData(token)),
-                  //       Navigator.pop(context, MyRoutes.LoginPageRoute),
-                  //     },
-                  // style: ButtonStyle(
-                  //     backgroundColor: MaterialStateProperty.all(
-                  //         Color.fromRGBO(35, 133, 59, 1))),
-                  // child: const Text("LogOut")
                 ));
               }),
-          // ElevatedButton(
-          //   onPressed: () {
-          //     final snackBar = SnackBar(
-          //       content: const Text('Yay! A SnackBar!'),
-          //       action: SnackBarAction(
-          //         label: 'Undo',
-          //         onPressed: () {
-          //           // Some code to undo the change.
-          //         },
-          //       ),
-          //     );
-
-          //     // Find the ScaffoldMessenger in the widget tree
-          //     // and use it to show a SnackBar.
-          //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          //   },
-          //   child: const Text('Show SnackBar'),
-          // ),
         ],
       ),
     );

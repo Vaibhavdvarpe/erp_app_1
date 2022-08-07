@@ -80,39 +80,74 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 17),
                 child: Container(
-                  height: 50,
-                  width: 310,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(16)),
-                  child: StreamBuilder(
-                      stream: checkUserBloc.streamData(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<CheckUserModel> snapshot) {
-                        return TextField(
-                          onChanged: (value) {
-                            clientcode = value;
-                          },
-                          // onSubmitted: (value) {
-                          //   checkUserBloc.sinkData(username, clientcode);
-                          //  otpStatus = snapshot.data!.value!.otp.toString();
-                          //  print(isOTP);
-                          // },
-                          obscureText: false,
-                          decoration: const InputDecoration(
-                            isDense: true,
-                            hintText: 'ClientCode',
-                            border: InputBorder.none,
-                            prefixIcon: Icon(
-                              Icons.qr_code_2,
-                              color: Colors.grey,
-                              size: 25,
-                            ),
-                            contentPadding: EdgeInsets.fromLTRB(20, 10, 0, 5),
+                    height: 50,
+                    width: 305,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(16)),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 12, right: 4),
+                          child: SvgPicture.asset(
+                            "assets/svg/userimage2.svg",
+                            height: 25,
                           ),
-                        );
-                      }),
-                ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: SvgPicture.asset(
+                            "assets/svg/vertical_line.svg",
+                            height: 20,
+                          ),
+                        ),
+                        StreamBuilder(
+                            stream: checkUserBloc.streamData(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<CheckUserModel> snapshot) {
+                              return Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 20, bottom: 7),
+                                    child: Container(
+                                        height: 21,
+                                        width: 190,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(bottom: 1),
+                                          child: TextField(
+                                            onChanged: (value) {
+                                              clientcode = value;
+                                            },
+                                            decoration: const InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.only(bottom: 15),
+                                                border: InputBorder.none,
+                                                hintText: "Client Code"),
+                                          ),
+                                        )),
+                                  ),
+                                ],
+                              );
+                            }),
+                        // StreamBuilder(
+                        //     stream: checkUserBloc.streamData(),
+                        //     builder: (BuildContext context,
+                        //         AsyncSnapshot<CheckUserModel> snapshot) {
+                        //       return TextField(
+                        //         onChanged: (value) {
+                        //           clientcode = value;
+                        //         },
+                        //         obscureText: false,
+                        //         decoration: const InputDecoration(
+                        //           isDense: true,
+                        //           hintText: 'Client Code',
+                        //           border: InputBorder.none,
+                        //         ),
+                        //       );
+                        //     }),
+                      ],
+                    )),
               ),
               Row(
                 children: [
@@ -120,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: EdgeInsets.only(top: 10, left: 28, right: 5),
                     child: Container(
                       height: 50,
-                      width: 307,
+                      width: 306,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(16),
@@ -136,19 +171,10 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                              left: 17,
-                            ),
+                            padding: const EdgeInsets.only(left: 17, right: 10),
                             child: SvgPicture.asset(
                               "assets/svg/vertical_line.svg",
-                              height: 18,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 17, right: 17),
-                            child: SvgPicture.asset(
-                              "assets/svg/91.svg",
-                              height: 18,
+                              height: 20,
                             ),
                           ),
                           StreamBuilder(
