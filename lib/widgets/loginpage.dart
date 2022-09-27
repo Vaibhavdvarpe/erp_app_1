@@ -362,13 +362,13 @@ class _LoginPageState extends State<LoginPage> {
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child: const ForgotPass(),
+                              child: ForgotPass(),
                             ),
                           );
                           print(isOTP);
                         },
                         child: const Text(
-                          "Forgot Passwrd?",
+                          "Forgot Password?",
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 14,

@@ -41,7 +41,7 @@ dependencies:
   velocity_x: ^3.4.0
   cached_network_image: ^3.2.0
   getwidget: ^2.0.5
-  responsive_framework: ^0.1.7
+  
   responsive_grid_list: ^1.2.4
   fluttertoast: ^8.0.9
   statusbarz: ^1.0.8
@@ -55,6 +55,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   countup: ^0.1.4
   get_storage: ^2.0.3
+  responsive_framework: ^0.2.0
   
 
 dev_dependencies:
